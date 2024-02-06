@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>NEALE</title>
+
+</head>
+
+<link type="text/css" rel="stylesheet" href="{{url_for('static', filename='mystyle.css')}}"/> 
+<body>
+
+
+  <header class="bg-violet-900 flex justify-between py-12">
+    <h1 class="text-3xl">NEALE</h1>
+
+    <nav>
+      <ul class="flex space-x-10">
+        <li><a href="/">Homepage</a></li>
+        {% if session['user'] %}
+        <li><a href="/logout">Log Out</a></li>
+        <li><a href="/memes/new">New Meme</a></li>
+        {% else %}
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <isaiddontfuckingworry class="bg-violet-900">
+    <main class="border-violet-850 border-solid border-2 rounded-lg p-3">
+      <!-- Corps de page -->
+      {% block content %}
+
+      {% endblock %}
+    </main>
+  </isaiddontfuckingworry>
+
+    <footer class="bg-violet-900 p-5 text-align">
+      <p> Aucune idée teehee~ </p>
+    </footer>
+
+
+  </body>
+</html>
