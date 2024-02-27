@@ -14,7 +14,7 @@ app = Flask("NEALE")
 app.secret_key = os.getenv("COOKIES_KEY")
 
 # Route de la page d'accueil
-@app.route('/')
+@app.route('/accueil')
 def index():
   db_memes = mongo.db.memes
   memes = db_memes.find({})
