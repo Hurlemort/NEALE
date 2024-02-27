@@ -86,3 +86,6 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+#route
+@app.route('/meme')
