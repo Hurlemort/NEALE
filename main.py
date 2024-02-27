@@ -29,6 +29,11 @@ def index():
 ################
 
 
+# Route settings
+@app.route('/settings')
+def settings():
+  if 'user' in session:
+
 # Route login
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -87,5 +92,16 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
-#route
-@app.route('/meme')
+
+#########
+# MEMES #
+#########
+
+
+# Route meme
+@app.route('/memes')
+def memes():
+  db_memes = mongo.db.memes
+  meme = db_memes.find_one({'_id': ObjectId(request.args['id'])})
+  return render_template('meme.html', meme=meme)
+
