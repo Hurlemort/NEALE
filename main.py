@@ -106,6 +106,6 @@ def memes():
   return render_template('meme.html', meme=meme)
 
 # Route pour créer un nouveau meme
-@app.route('/meme/new', methods=['POST', 'GET'])
+@app.route('/memes/new', methods=['POST', 'GET'])
 def newmeme():
   
