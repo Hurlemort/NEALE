@@ -105,3 +105,7 @@ def memes():
   meme = db_memes.find_one({'_id': ObjectId(request.args['id'])})
   return render_template('meme.html', meme=meme)
 
+# Route pour créer un nouveau meme
+@app.route('/meme/new', methods=['POST', 'GET'])
+def newmeme():
+  
