@@ -4,7 +4,7 @@ import os # os = environnement sécurisé
 import bcrypt 
 from bson.objectid import ObjectId # Pour gérer les OcbjectId
 
-# Connextion à la BDD
+# Connextion à la BDD 
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
 
 # Création de l'application.
@@ -12,6 +12,8 @@ app = Flask("NEALE")
 
 # Cookie de session d'utilisateur
 app.secret_key = os.getenv("COOKIES_KEY")
+
+
 
 # Route de la page d'accueil
 @app.route('/')
@@ -23,27 +25,31 @@ def index():
   else:
     return render_template('index.html', memes=memes)
 
-
 ################
 # UTILISATEURS #
 ################
-
 
 # Route settings
 @app.route('/settings')
 def settings():
   if 'user' in session:
+    if request.method=='POST':
+      return render_template("settings.html")
+    else:
+      return render_template("settings.html")
+  else:
+    return render_template("signup.html", error="You must be logged in to access your settings")
 
-# Route login
-@app.route('/login', methods=['POST', 'GET'])
-def login():
+# Route signup
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
   # Si on essaye de soummetre le formulaire
   if request.method == 'POST':
     # On vérifie qu'un utilisateur du même nom n'existe pas déjà
     db_users = mongo.db.users
     # Si l'utilisateur existe déjà, on invalide l'envoi du formulaire
     if (db_users.find_one({'username': request.form['username']})):
-      return render_template('login.html', error = "Sorry, this username is already in use")
+      return render_template('signup.html', error = "Sorry, this username is already in use")
     # Sinon, on crée l'utilisateur
     else:
       if (request.form['password'] == request.form['password_verif']):
@@ -59,9 +65,9 @@ def login():
         # On renvoie l'utilisateur à la page d'accueil
         return redirect(url_for('index'))
       else:
-        return render_template('login.html', error = "Passwords don't match")
+        return render_template('signup.html', error = "Passwords don't match")
   else:
-    return render_template('login.html')
+    return render_template('signup.html')
 
 # Route login
 @app.route('/login', methods=['POST', 'GET'])
@@ -92,20 +98,18 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
-
 #########
 # MEMES #
 #########
 
-
-# Route meme
-@app.route('/memes')
-def memes():
+# Route pour "mieux voir" un meme
+@app.route('/memes/<meme_id>', methods=['POST','GET'])
+def memes(meme_id):
   db_memes = mongo.db.memes
-  meme = db_memes.find_one({'_id': ObjectId(request.args['id'])})
-  return render_template('meme.html', meme=meme)
+  meme = db_memes.find_one({'_id': ObjectId(meme_id)})
+  return render_template('memes.html', meme=meme)
 
 # Route pour créer un nouveau meme
 @app.route('/memes/new', methods=['POST', 'GET'])
 def newmeme():
-  
+  return render_template("newmeme.html")
