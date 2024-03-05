@@ -124,3 +124,17 @@ def meme(meme_id):
 def newmeme():
   return render_template("newmeme.html")
 
+#########
+# GAMES #
+#########
+
+@app.route('/games')
+def games():
+  return render_template("games.html")
+
+
+
+
+
+#Execution du code
+app.run(host='0.0.0.0', port=81)
