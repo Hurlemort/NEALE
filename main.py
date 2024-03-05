@@ -117,9 +117,10 @@ def memes():
 def meme(meme_id):
   db_memes = mongo.db.memes
   meme = db_memes.find_one({'_id': ObjectId(meme_id)})
-  return render_template('onememe.html', meme=meme)
+  return render_template('one_meme.html', meme=meme)
 
 # Route pour créer un nouveau meme
 @app.route('/memes/new', methods=['POST', 'GET'])
 def newmeme():
   return render_template("newmeme.html")
+
