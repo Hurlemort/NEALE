@@ -102,12 +102,22 @@ def logout():
 # MEMES #
 #########
 
+#menu des memes
+@app.route('/memes')
+def memes():
+  db_memes = mongo.db.memes
+  memes = db_memes.find({})
+  if 'user' in session:
+    return render_template("memes.html", memes=memes, user=session['user'])
+  else:
+    return render_template("memes.html", memes=memes)
+
 # Route pour "mieux voir" un meme
-@app.route('/memes/<meme_id>', methods=['POST','GET'])
-def memes(meme_id):
+@app.route('/memes/one_meme/<meme_id>', methods=['POST','GET'])
+def meme(meme_id):
   db_memes = mongo.db.memes
   meme = db_memes.find_one({'_id': ObjectId(meme_id)})
-  return render_template('memes.html', meme=meme)
+  return render_template('onememe.html', meme=meme)
 
 # Route pour créer un nouveau meme
 @app.route('/memes/new', methods=['POST', 'GET'])
