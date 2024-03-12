@@ -18,12 +18,14 @@ app.secret_key = os.getenv("COOKIES_KEY")
 # Route de la page d'accueil
 @app.route('/')
 def index():
+  '''
   db_memes = mongo.db.memes
   memes = db_memes.find({})
   if 'user' in session:
     return render_template('index.html', memes=memes, username=session['user'])
   else:
-    return render_template('index.html', memes=memes)
+    return render_template('index.html', memes=memes)'''
+  return render_template('index.html')
 
 ################
 # UTILISATEURS #
@@ -32,17 +34,21 @@ def index():
 # Route settings
 @app.route('/settings')
 def settings():
+  '''
   if 'user' in session:
     if request.method=='POST':
       return render_template("settings.html")
     else:
       return render_template("settings.html")
   else:
-    return render_template("signup.html", error="You must be logged in to access your settings")
+    return render_template("signup.html", error="You must be logged in to access your settings")'''
+  return render_template("settings.html")
+  
 
 # Route signup
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
+  '''
   # Si on essaye de soummetre le formulaire
   if request.method == 'POST':
     # On vérifie qu'un utilisateur du même nom n'existe pas déjà
@@ -67,11 +73,14 @@ def signup():
       else:
         return render_template('signup.html', error = "Passwords don't match")
   else:
-    return render_template('signup.html')
+    return render_template('signup.html')'''
+  return render_template('signup.html')
 
 # Route login
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+
+  '''
   # Si on essaie de se connecter
   if request.method == 'POST':
     db_users = mongo.db.users
@@ -90,7 +99,8 @@ def login():
     else:
       return render_template('login.html', error = "Invalid username")
   else:
-    return render_template('login.html')
+    return render_template('login.html')'''
+  return render_template('login.html')
 
 # Route logout
 @app.route('/logout')
@@ -105,19 +115,23 @@ def logout():
 #menu des memes
 @app.route('/memes')
 def memes():
+  '''
   db_memes = mongo.db.memes
   memes = db_memes.find({})
   if 'user' in session:
     return render_template("memes.html", memes=memes, user=session['user'])
   else:
-    return render_template("memes.html", memes=memes)
+    return render_template("memes.html", memes=memes)'''
+  return render_template("memes.html")
 
 # Route pour "mieux voir" un meme
 @app.route('/memes/one_meme/<meme_id>', methods=['POST','GET'])
 def meme(meme_id):
+  '''
   db_memes = mongo.db.memes
   meme = db_memes.find_one({'_id': ObjectId(meme_id)})
-  return render_template('one_meme.html', meme=meme)
+  return render_template('one_meme.html', meme=meme)'''
+  return render_template('one_meme.html')
 
 # Route pour créer un nouveau meme
 @app.route('/memes/new', methods=['POST', 'GET'])
