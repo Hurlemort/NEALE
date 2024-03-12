@@ -19,30 +19,30 @@
 
     <nav>
       <ul class="flex space-x-10">
-        <li><a href="/">Homepage</a></li>
+        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/">Homepage</a></li>
         {% if session['user'] %}
-        <li><a href="/logout">Log Out</a></li>
-        <li><a href="/memes/new">New Meme</a></li>
+        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/logout">Log Out</a></li>
+        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/memes/new">New Meme</a></li>
         {% else %}
-        <li><a href="/login">Log In</a></li>
-        <li><a href="/signup">Sign Up</a></li>
+        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/login">Log In</a></li>
+        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/signup">Sign Up</a></li>
         {% endif %}
       </ul>
     </nav>
   </header>
 
-  <isaiddontfuckingworry class="bg-gray-900">
-    <main class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3">
-      <!-- Corps de page -->
-      {% block content %}
 
-      {% endblock %}
-    </main>
-  </isaiddontfuckingworry>
+  <main class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3">
+    <!-- Corps de page -->
+    {% block content %}
 
-    <footer class="bg-gray-900 p-5 text-align">
-      <p> Aucune idée teehee~ </p>
-    </footer>
+    {% endblock %}
+  </main>
+
+
+  <footer class="bg-gray-900 p-5 text-align">
+    <p> Aucune idée teehee~ </p>
+  </footer>
 
 
   </body>
