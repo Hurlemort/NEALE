@@ -1,5 +1,5 @@
 let LoginPassword = false;
-let SignupPassord = false;
+let SignupPassword = false;
 let ConfirmPassword = false;
 
 $("#hidebutton1").on("click", function(event) {
@@ -15,14 +15,14 @@ $("#hidebutton1").on("click", function(event) {
 });
 
 $("#hidebutton2").on("click", function(event) {
-  if (SignupPassord){
-    document.getElementById("SignupPassord").setAttribute("type","text");
+  if (SignupPassword){
+    document.getElementById("SignupPassword").setAttribute("type","text");
     document.getElementById("hidebutton2").src = "static/view.png";
-    SignupPassord = false;
+    SignupPassword = false;
   }else{
-    document.getElementById("SignupPassord").setAttribute("type","password");
+    document.getElementById("SignupPassword").setAttribute("type","password");
     document.getElementById("hidebutton2").src = "static/hidden.png";
-    SignupPassord = true;
+    SignupPassword = true;
   }
 });
 
