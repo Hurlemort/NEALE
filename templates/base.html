@@ -24,9 +24,10 @@
         {% if session['user'] %}
         <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/logout">Log Out</a></li>
         <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/memes/new">New Meme</a></li>
+        <!--> <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/user.html"><img src='Images/icone_prof.png'/></a></li> <!-->
         {% else %}
         <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/login">Log In</a></li>
-        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/signup">Sign Up</a></li>
+        <li class="bg-gray-900 border-blue-800 border-solid border-2 rounded-lg p-3"><a href="/signup">Sign Up</a></li>      
         {% endif %}
       </ul>
     </nav>
