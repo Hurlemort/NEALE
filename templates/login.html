@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="bg-blue-800 py-10 rounded-lg">
-    <form method="POST" action="" name="form" class="border-12 border-black shadow-xl rounded-lg py-6 px-24 mx-32 bg-gray-900">
+  <div class="grid grid-cols-3 bg-blue-800 py-16 rounded-lg">
+    <form method="POST" action="" name="form" class="border-12 border-black shadow-xl rounded-lg py-6 px-24 bg-gray-900 col-start-2">
       {% if erreur %}
         <div class="py-5">
           <label class="text-zinc-200">
@@ -26,8 +26,11 @@
           <img id="hidebutton1" src="static/hidden.png" class="box-border w-16 h-16 p-4"/>
         </div>
       </div>
-      <br/>
-      <div type="submit" onClick="document.form.submit()" class="rounded-lg border-black p-2 border-2 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 bg-blue-800 text-xl w-1/5"><b>Connect</b></div>
+      <div class="grid grid-cols-3">
+        <div type="submit" onClick="document.form.submit()" class="rounded-lg border-black p-2 border-2 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-blue-800 bg-blue-800 text-xl col-start-2 flex justify-center">
+          <b>Connect</b>
+        </div>
+      </div>
       <br/>
     </form>
   </div>
