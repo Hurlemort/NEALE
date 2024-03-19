@@ -48,7 +48,6 @@ def settings():
 # Route signup
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
-  '''
   # Si on essaye de soummetre le formulaire
   if request.method == 'POST':
     # On vérifie qu'un utilisateur du même nom n'existe pas déjà
@@ -73,14 +72,11 @@ def signup():
       else:
         return render_template('signup.html', error = "Passwords don't match")
   else:
-    return render_template('signup.html')'''
-  return render_template('signup.html')
+    return render_template('signup.html')
 
 # Route login
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-
-  '''
   # Si on essaie de se connecter
   if request.method == 'POST':
     db_users = mongo.db.users
@@ -99,8 +95,7 @@ def login():
     else:
       return render_template('login.html', error = "Invalid username")
   else:
-    return render_template('login.html')'''
-  return render_template('login.html')
+    return render_template('login.html')
 
 # Route logout
 @app.route('/logout')
