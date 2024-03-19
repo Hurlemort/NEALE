@@ -108,6 +108,11 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+# Route compte spécifique 
+app.route('/user')
+def user():
+  return render_template('user.html')
+
 #########
 # MEMES #
 #########
