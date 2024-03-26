@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="flex">
+    <div>
+      <p>{{meme['title']}}</p>
+      <img class="" src="" />
+    </div>
+    <div class="flex">
+      <p>{{meme['creator']}}</p>
+      <p>{{meme['description']}}</p>
+    </div>
+  </section>
+  <form class="flex">
+    <textarea cols="150" rows="20" name="comment">Comment</textarea>
+    <button type="submit">Post</button>
+  </form>
+  <h2>Commments:</h2>
+  {% for Comment in Comments %}
+    <div class="flex border-2 border-blue-800 rounded-lg">
+      <p>{{Comment.author}}</p>
+      <p>{{Comment.content}}</p>
+    </div>
+  {% else %}
+    <p>Pas de commentaires pour l'instant</p>
+  {% endfor %}
+  
+{% endblock %}

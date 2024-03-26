@@ -19,7 +19,7 @@ app.secret_key = os.getenv("COOKIES_KEY")
 @app.route('/')
 def index():
   '''
-  db_memes = mongo.db.memes
+  db_memes = mongo.NEALE.memes
   memes = db_memes.find({})
   if 'user' in session:
     return render_template('index.html', memes=memes, username=session['user'])
@@ -51,7 +51,7 @@ def signup():
   # Si on essaye de soummetre le formulaire
   if request.method == 'POST':
     # On vérifie qu'un utilisateur du même nom n'existe pas déjà
-    db_users = mongo.db.users
+    db_users = mongo.NEALE.users
     # Si l'utilisateur existe déjà, on invalide l'envoi du formulaire
     if (db_users.find_one({'username': request.form['username']})):
       return render_template('signup.html', error = "Sorry, this username is already in use")
@@ -63,7 +63,8 @@ def signup():
         # On ajoute l'utilisateur à la BDD
         db_users.insert_one({
           'username': request.form['username'],
-          'password': password_hash
+          'password': password_hash,
+          'profilepicture': profilepicture
         })
         # On connecte l'utilisateur
         session['user'] = request.form['username']
@@ -79,7 +80,7 @@ def signup():
 def login():
   # Si on essaie de se connecter
   if request.method == 'POST':
-    db_users = mongo.db.users
+    db_users = mongo.NEALE.users
     # Trouver si l'utilisateur correspond à celui entré
     user = db_users.find_one({'username': request.form['username']})
     # Si l'utilisateur existe
@@ -116,7 +117,7 @@ def user():
 @app.route('/memes')
 def memes():
   '''
-  db_memes = mongo.db.memes
+  db_memes = mongo.NEALE.memes
   memes = db_memes.find({})
   if 'user' in session:
     return render_template("memes.html", memes=memes, user=session['user'])
@@ -128,7 +129,7 @@ def memes():
 @app.route('/memes/one_meme/<meme_id>', methods=['POST','GET'])
 def meme(meme_id):
   '''
-  db_memes = mongo.db.memes
+  db_memes = mongo.NEALE.memes
   meme = db_memes.find_one({'_id': ObjectId(meme_id)})
   return render_template('one_meme.html', meme=meme)'''
   return render_template('one_meme.html')
