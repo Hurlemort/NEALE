@@ -64,7 +64,6 @@ def signup():
         db_users.insert_one({
           'username': request.form['username'],
           'password': password_hash,
-          'profilepicture': profilepicture
         })
         # On connecte l'utilisateur
         session['user'] = request.form['username']

@@ -4,7 +4,7 @@
   <section class="flex">
     <div>
       <p>{{meme['title']}}</p>
-      <img class="" src="" />
+      <img class="" src="{{meme['meme']}}" />
     </div>
     <div class="flex">
       <p>{{meme['creator']}}</p>
@@ -19,6 +19,7 @@
   {% for Comment in Comments %}
     <div class="flex border-2 border-blue-800 rounded-lg">
       <p>{{Comment.author}}</p>
+      <hr/>
       <p>{{Comment.content}}</p>
     </div>
   {% else %}
