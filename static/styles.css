@@ -38,5 +38,5 @@ zinc-200
 text-zinc-200
 
 blue-800
-border-blue-800 border-solid border-2 rounded-lg
+border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-blue-800 bg-blue-800 text-xl col-start-2 flex justify-center border-2
 */
