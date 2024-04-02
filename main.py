@@ -129,10 +129,38 @@ def meme(id):
   meme = db_memes.find_one({'_id': ObjectId(id)})
   return render_template('one_meme.html', meme=meme)
 
+
+
 # Route pour créer un nouveau meme
 @app.route('/memes/new', methods=['POST', 'GET'])
 def newmeme():
-  return render_template("newmeme.html")
+  # Si l'utilisateur n'est pas connecté 
+  if 'user' not in session: 
+    return render_template("login.html", erreur="You must log in to post a meme")
+  # si on essaye d'envoyer le formulaire
+
+  if request.method == 'POST':
+    # on appelle la table "annonces" de la bdd
+    db_memes = mongo.NEALE.memes
+    # On récupère ce que l'utilisateur a rempli dans le formulaire
+    title = request.form['title']
+    description = request.form['description']
+    image = request.form['image']
+    # Si les champs titre et description sont remplis
+    if (title and description and image):
+      # On insère dans la bdd les nouvelles données
+      db_memes.insert_one({
+        'title': title,
+        'description': description,
+        'image': image
+      })
+      return render_template("newmeme.html", erreur="Your meme has been successfully posted")
+    else:
+      return render_template("newmeme.html", erreur="Please fill in a title, image and description")
+  return render_template("newmeme.html") 
+
+
+
 
 #########
 # GAMES #
