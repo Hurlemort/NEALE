@@ -162,6 +162,8 @@ def newmeme():
 
 
 
+
+
 #########
 # GAMES #
 #########
@@ -171,6 +173,16 @@ def games():
   return render_template("games.html")
 
 
+
+#########
+# ADMIN #
+#########
+
+@app.route('/admin/backmemes')
+def adminmemes():
+  db_memes = mongo.NEALE.memes
+  memes = db_memes.find({})
+  return render_template("admin/backmemes.html", memes = memes)
 
 
 
