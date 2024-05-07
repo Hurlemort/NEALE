@@ -104,7 +104,7 @@ def logout():
     return redirect(url_for('index'))
 
 # Route compte spécifique 
-app.route('/user')
+@app.route('/user')
 def user():
   return render_template('user.html')
 
