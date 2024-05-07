@@ -122,13 +122,30 @@ def memes():
   else:'''
   return render_template("memes.html", memes=memes)
 
-# Route pour "mieux voir" un meme
-@app.route('/memes/one_meme/<id>', methods=['POST','GET'])
+# Route pour "mieux voir" un meme + comments
+@app.route('/memes/one_meme/<id>', methods=['POST', 'GET'])
 def meme(id):
   db_memes = mongo.NEALE.memes
-  meme = db_memes.find_one({'_id': ObjectId(id)})
-  return render_template('one_meme.html', meme=meme)
-
+  meme = db_memes.find_one({"_id":ObjectId(id)})
+  db_comments = mongo.NEALE.comments
+  comments = db_comments.find({"MemeID":id})
+  print(comments)
+  if request.method == 'POST':
+    if 'user' not in session:
+      return redirect(url_for('login'))
+    else:
+      user = session['user']
+      db_comments.insert_one({
+        "MemeID":id,
+        "author":user,
+        "comment":request.form['comment']
+      })
+      return render_template("one_meme.html", meme=meme, Comments=comments)
+  else:
+    db_memes = mongo.NEALE.memes
+    meme = db_memes.find_one({'_id': ObjectId(id)})
+    return render_template('one_meme.html', meme=meme, Comments=comments)
+    
 
 
 # Route pour créer un nouveau meme
@@ -152,7 +169,8 @@ def newmeme():
       db_memes.insert_one({
         'title': title,
         'description': description,
-        'image': image
+        'image': image,
+        'user':session['user']
       })
       return render_template("newmeme.html", erreur="Your meme has been successfully posted")
     else:
@@ -184,7 +202,11 @@ def adminmemes():
   memes = db_memes.find({})
   return render_template("admin/backmemes.html", memes = memes)
 
-
+@app.route('/admin/backusers')
+def adminusers():
+    db_users = mongo.NEALE.users
+    users = db_users.find({})
+    return render_template("admin/backmemes.html", users = users)
 
 #Execution du code
 app.run(host='0.0.0.0', port=81)
