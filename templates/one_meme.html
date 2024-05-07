@@ -26,12 +26,12 @@
     <div class="flex justify-center pb-6 text-2xl">
       <h2>Commments:</h2>
     </div>
-    <div class="flex justify-center">
+    <div class="justify-center">
       {% if Comments %}
         {% for Comment in Comments %}
-          <div class="flex justify-start border-2 border-blue-800 rounded-md w-full">
+          <div class="flex justify-start border-2 border-blue-800 rounded-md w-full mb-6">
             <p class="text-xl border-r-blue-800 border-2 border-t-0 border-b-0 border-l-0 px-6 py-4">{{Comment.author}}:</p>
-            <p class="px-6 py-4">{{Comment.comment}}</p>
+            <p class="px-6 py-4 w-full text-wrap break-words overflow-hidden">{{Comment.comment}}</p>
           </div>
         {% endfor %}
       {% else %}
