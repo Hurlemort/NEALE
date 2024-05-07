@@ -4,6 +4,8 @@ import os # os = environnement sécurisé
 import bcrypt 
 from bson.objectid import ObjectId # Pour gérer les OcbjectId
 
+from datetime import date
+
 # Connextion à la BDD 
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
 
@@ -170,7 +172,8 @@ def newmeme():
         'title': title,
         'description': description,
         'image': image,
-        'user':session['user']
+        'creator':session['user'],
+        'date':str(date.today())
       })
       return render_template("newmeme.html", erreur="Your meme has been successfully posted")
     else:
