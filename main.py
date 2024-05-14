@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, url_for, redirect, session
-import pymongo # Connexion avec MangoDB
-import os # os = environnement sécurisé
-import bcrypt 
-from bson.objectid import ObjectId # Pour gérer les OcbjectId
-
+import os  # os = environnement sécurisé
 from datetime import date
+
+import bcrypt
+import pymongo  # Connexion avec MangoDB
+from bson.objectid import ObjectId  # Pour gérer les OcbjectId
+from flask import Flask, redirect, render_template, request, session, url_for
 
 # Connextion à la BDD 
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
@@ -131,7 +131,6 @@ def meme(id):
   meme = db_memes.find_one({"_id":ObjectId(id)})
   db_comments = mongo.NEALE.comments
   comments = db_comments.find({"MemeID":id})
-  print(comments)
   if request.method == 'POST':
     if 'user' not in session:
       return redirect(url_for('login'))
