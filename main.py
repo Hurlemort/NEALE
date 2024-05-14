@@ -208,7 +208,7 @@ def adminmemes():
 def adminusers():
     db_users = mongo.NEALE.users
     users = db_users.find({})
-    return render_template("admin/backmemes.html", users = users)
+    return render_template("admin/backusers.html", users = users)
 
 #Execution du code
 app.run(host='0.0.0.0', port=81)
