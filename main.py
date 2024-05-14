@@ -135,13 +135,16 @@ def meme(id):
     if 'user' not in session:
       return redirect(url_for('login'))
     else:
-      user = session['user']
-      db_comments.insert_one({
-        "MemeID":id,
-        "author":user,
-        "comment":request.form['comment']
-      })
-      return render_template("one_meme.html", meme=meme, Comments=comments)
+      if request.form['comment'] != "":
+        user = session['user']
+        db_comments.insert_one({
+          "MemeID":id,
+          "author":user,
+          "comment":request.form['comment']
+        })
+        return render_template("one_meme.html", meme=meme, Comments=comments)
+      else:
+        return render_template("one_meme.html", meme=meme, Comments=comments)
   else:
     db_memes = mongo.NEALE.memes
     meme = db_memes.find_one({'_id': ObjectId(id)})
@@ -209,6 +212,31 @@ def adminusers():
     db_users = mongo.NEALE.users
     users = db_users.find({})
     return render_template("admin/backusers.html", users = users)
+
+@app.route('/admin/one_meme/<id>', methods=['POST','GET'])
+def adminone_meme(id):
+  db_memes = mongo.NEALE.memes
+  meme = db_memes.find_one({"_id":ObjectId(id)})
+  db_comments = mongo.NEALE.comments
+  comments = db_comments.find({"MemeID":id})
+  if request.method == 'POST':
+    if 'user' not in session:
+      return redirect(url_for('login'))
+    else:
+      if request.form['comment'] != "":
+        user = session['user']
+        db_comments.insert_one({
+          "MemeID":id,
+          "author":user,
+          "comment":request.form['comment']
+        })
+        return render_template("admin/backonememe.html", meme=meme, Comments=comments)
+      else:
+        return render_template("admin/backonememe.html", meme=meme, Comments=comments)
+  else:
+    db_memes = mongo.NEALE.memes
+    meme = db_memes.find_one({'_id': ObjectId(id)})
+    return render_template('admin/backonememe.html', meme=meme, Comments=comments)
 
 #Execution du code
 app.run(host='0.0.0.0', port=81)

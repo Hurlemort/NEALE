@@ -15,14 +15,30 @@
     
     {% for memes in memes %}
     <tbody>
-      <td class = " w-2/10 border border-purple-800 border-2 rounded-lg p-2">{{memes['title']}}</td>
-      <td class = " w-2/10 border border-purple-800 border-2 rounded-lg p-2">{{memes['description']}}</td>
-      <td class = " w-2/10 border border-purple-800 border-2 rounded-lg p-2">{{memes['creator']}}</td>
-      <td class = " w-1/10 border border-purple-800 border-2 rounded-lg p-2">{{memes['date']}}</td>
-      <td class = " w-3/10 border border-purple-800 border-2 rounded-lg p-2"><img src="{{memes['image']}}"></td>
-      <td class = "border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl flex justify-center border-2"><a href="">Read</a></td>
-      <td class = "border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl flex justify-center border-"><a href="">Update</a></td>
-      <td class = "border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl flex justify-center border-"><a href="">Delete</a></td>
+      <td class = " min-w-64 border border-purple-800 border-2 rounded-lg p-2">
+        {{memes['title']}}
+      </td>
+      <td class = " min-w-64 max-w-md border border-purple-800 border-2 rounded-lg p-2 text-wrap break-words overflow-hidden">
+        {{memes['description']}}
+      </td>
+      <td class = " min-w-64 border border-purple-800 border-2 rounded-lg p-2 text-center">
+        {{memes['creator']}}
+      </td>
+      <td class = " min-w-32 border border-purple-800 border-2 rounded-lg p-2 text-center">
+        {{memes['date']}}
+      </td>
+      <td class = " w-3/10 border border-purple-800 border-2 rounded-lg p-2">
+        <img src="{{memes['image']}}" class="max-w-xl min-h-64">
+      </td>
+      <td class = "border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl flex justify-center border-2 mt-4 ml-4">
+        <a href="/admin/one_meme/{{memes['_id']}}">Read</a>
+      </td>
+      <td class = "border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl flex justify-center border-2 mt-4 ml-4">
+        <a href="">Update</a>
+      </td>
+      <td class = "border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl flex justify-center border-2 mt-4 ml-4">
+        <a href="">Delete</a>
+      </td>
     </tbody>
     {% endfor %}
   </table>
