@@ -29,6 +29,10 @@ def index():
     return render_template('index.html', memes=memes)'''
   return render_template('index.html')
 
+@app.route('/research')
+def research():
+  return render_template('research.html')
+
 ################
 # UTILISATEURS #
 ################
@@ -106,8 +110,11 @@ def logout():
     return redirect(url_for('index'))
 
 # Route compte spécifique 
-@app.route('/user')
+@app.route('/user', methods=['POST', 'GET'])
 def user():
+  '''db_users = mongo.NEALE.users
+  user = db_users.find_one({'username': request.form['username']})'''
+    
   return render_template('user.html')
 
 #########
