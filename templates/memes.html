@@ -17,12 +17,11 @@
       <div class="w-full h-full border-solid rounded-lg bg-gradient-to-b from-transparent via-transparent to-black flex flex-col justify-end">
         
         <!-- Enfin, l'unique bloc div à l'intérieur qui sera donc mis tout en bas. Il contient les différents paragraphes etc. que vous voulezz afficher -->
-        <div>
+        <div class="truncate">
           <p class="ml-3">{{memes['creator']}}</p>
           <p class="ml-3">"{{memes['description']}}"</p>
         </div>
       </div>
-      
     </div>
   </a>
   {% endfor %}
