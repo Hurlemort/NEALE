@@ -230,13 +230,13 @@ def adminone_meme(id):
           "author":user,
           "comment":request.form['comment']
         })
-        return render_template("admin/backonememe.html", meme=meme, Comments=comments)
+        return render_template("admin/backone_meme.html", meme=meme, Comments=comments)
       else:
-        return render_template("admin/backonememe.html", meme=meme, Comments=comments)
+        return render_template("admin/backone_meme.html", meme=meme, Comments=comments)
   else:
     db_memes = mongo.NEALE.memes
     meme = db_memes.find_one({'_id': ObjectId(id)})
-    return render_template('admin/backonememe.html', meme=meme, Comments=comments)
+    return render_template('admin/backone_meme.html', meme=meme, Comments=comments)
 
 #Execution du code
 app.run(host='0.0.0.0', port=81)
