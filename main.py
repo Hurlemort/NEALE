@@ -31,6 +31,11 @@ def index():
 
 @app.route('/research')
 def research():
+  db_memes = mongo.NEALE.memes
+  memes = db_memes.find({})
+  '''if 'user' in session:
+    return render_template("memes.html", memes=memes, user=session['user'])
+  else:'''
   return render_template('research.html')
 
 ################
@@ -112,9 +117,32 @@ def logout():
 # Route compte spécifique 
 @app.route('/user', methods=['POST', 'GET'])
 def user():
-  '''db_users = mongo.NEALE.users
-  user = db_users.find_one({'username': request.form['username']})'''
-    
+  db_users = mongo.NEALE.users
+  user = db_users.find_one({'username': request.form['username']})
+    if 'user' not in session: 
+      return render_template("login.html", erreur="You must log in to post a meme")
+    # si on essaye d'envoyer le formulaire
+
+    if request.method == 'POST':
+      # on appelle la table "annonces" de la bdd
+      db_memes = mongo.NEALE.memes
+      # On récupère ce que l'utilisateur a rempli dans le formulaire
+      title = request.form['title']
+      description = request.form['description']
+      image = request.form['image']
+      # Si les champs titre et description sont remplis
+      if (title and description and image):
+        # On insère dans la bdd les nouvelles données
+        db_memes.insert_one({
+          'title': title,
+          'description': description,
+          'image': image,
+          'creator':session['user'],
+          'date':str(date.today())
+        })
+        return render_template("newmeme.html", erreur="Your meme has been successfully posted")
+      else:
+        return render_template("newmeme.html", erreur="Please fill in a title, image and description")
   return render_template('user.html')
 
 #########
