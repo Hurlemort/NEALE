@@ -18,17 +18,17 @@
 
 
   <header class="bg-gray-900 flex justify-between py-12 ">
-    <h1 class="text-3xl" href="/">NEALE</h1>
+    <h1 class="text-5xl p-8"> <a href="/">NEALE</a></h1>
 
     <nav>
       <ul class="flex space-x-10">
         {% if session['user'] %}
-        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl col-start-2 flex justify-center border-2"><a href="/user">Profile</a></li>
-        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl col-start-2 flex justify-center border-2"><a href="/memes/new">New Meme</a></li>
-        <!--> <li class="hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl col-start-2 flex justify-center border-2"><a href="/user.html"><img src="static/Images/icone_prof.png"/></a></li> <!-->
+        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl col-start-2 flex justify-center border-2 p-9"><a href="/user">Profile</a></li>
+        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl col-start-2 flex justify-center border-2 p-9"><a href="/memes/new">New Meme</a></li>
+        <li class="border-solid border-2 rounded-full p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl col-start-2 flex justify-center border-2"><a href="/user"><img class='h-24' src="static/Images/icone_prof.png"/></a></li>
         {% else %}
-        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl col-start-2 flex justify-center border-2"><a href="/login">Log In</a></li>
-        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-xl col-start-2 flex justify-center border-2"><a href="/signup">Sign Up</a></li>      
+        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl col-start-2 flex justify-center border-2 p-9"><a href="/login">Log In</a></li>
+        <li class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl col-start-2 flex justify-center border-2 p-9"><a href="/signup">Sign Up</a></li>      
         {% endif %}
       </ul>
     </nav>
