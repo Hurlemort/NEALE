@@ -1,5 +1,6 @@
 import os  # os = environnement sécurisé
 from datetime import date
+from types import MethodType
 
 import bcrypt
 import pymongo  # Connexion avec MangoDB
@@ -29,14 +30,36 @@ def index():
     return render_template('index.html', memes=memes)'''
   return render_template('index.html')
 
-@app.route('/research')
+@app.route('/research', methods=['POST','GET'])
 def research():
   db_memes = mongo.NEALE.memes
-  memes = db_memes.find({})
-  '''if 'user' in session:
-    return render_template("memes.html", memes=memes, user=session['user'])
-  else:'''
-  return render_template('research.html')
+  if request.method=='GET':
+    memes = db_memes.find({})
+    query=""
+  else:
+    query = request.form['query']
+    memes=db_memes.aggregate([{
+        "$match":{
+          "$or":[{
+            "title":{
+              "$regex":query,
+              "$options":"i"
+            }
+          },{
+            "description":{
+              "$regex":query,
+              "$options":"i"
+            }
+          },{
+            "creator":{
+              "$regex":query,
+              "$options":"i"
+            }
+          }]
+        }
+    }])
+    
+  return render_template('research.html', memes=memes, query=query)
 
 ################
 # UTILISATEURS #
