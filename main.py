@@ -272,9 +272,8 @@ def adminone_meme(id):
 
 @app.route('/admin/backdel/<id>', methods=['GET','POST'])
 def admindel(id):
-  b_memes = mongo.NEALE.memes
+  db_memes = mongo.NEALE.memes
   meme = db_memes.find_one({"_id":ObjectId(id)})
-  db_comments = mongo.NEALE.comments
   return render_template("admin/backdel.html", meme=meme)
 
 @app.route('/admin/backupdate/<id>', methods=['POST','GET'])
