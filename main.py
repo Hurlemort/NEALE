@@ -270,5 +270,19 @@ def adminone_meme(id):
     meme = db_memes.find_one({'_id': ObjectId(id)})
     return render_template('admin/backone_meme.html', meme=meme, Comments=comments)
 
+@app.route('/admin/delete_meme/<id>')
+def delete_meme(id):
+  db_memes = mongo.NEALE.memes
+  db_memes.delete_one({"_id":ObjectId(id)})
+  return render_template('/admin/backmemes.html')
+
+@app.route('/admin/update_meme/<id>', methods=['POST','GET'])
+def update_meme(id):
+  db_memes = mongo.NEALE.memes
+  return render_template('/admin/backmemes.html', memes = memes)
+  
+  
+  
+
 #Execution du code
 app.run(host='0.0.0.0', port=81)
