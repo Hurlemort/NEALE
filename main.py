@@ -277,5 +277,11 @@ def admindel(id):
   db_comments = mongo.NEALE.comments
   return render_template("admin/backdel.html", meme=meme)
 
+@app.route('/admin/backupdate/<id>', methods=['POST','GET'])
+def update_meme(id):
+  db_memes = mongo.NEALE.memes
+  return render_template('/admin/backmemes.html', memes = memes)
+
+
 #Execution du code
 app.run(host='0.0.0.0', port=81)
