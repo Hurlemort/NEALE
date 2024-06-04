@@ -270,5 +270,12 @@ def adminone_meme(id):
     meme = db_memes.find_one({'_id': ObjectId(id)})
     return render_template('admin/backone_meme.html', meme=meme, Comments=comments)
 
+@app.route('/admin/backdel/<id>', methods=['GET','POST'])
+def admindel(id):
+  b_memes = mongo.NEALE.memes
+  meme = db_memes.find_one({"_id":ObjectId(id)})
+  db_comments = mongo.NEALE.comments
+  return render_template("admin/backdel.html", meme=meme)
+
 #Execution du code
 app.run(host='0.0.0.0', port=81)
