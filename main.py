@@ -140,7 +140,9 @@ def logout():
 # Route compte spécifique 
 @app.route('/user', methods=['POST', 'GET'])
 def user():
-    return render_template('user.html')
+  db_users = mongo.NEALE.users
+  user = db_users.find_one({'username': session['user']})
+  return render_template('user.html', user=user)
 
 #########
 # MEMES #
