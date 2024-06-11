@@ -98,6 +98,8 @@ def signup():
         db_users.insert_one({
           'username': request.form['username'],
           'password': password_hash,
+          "avatar":request.form["avatar"],
+          "description":request.form["description"]
         })
         # On connecte l'utilisateur
         session['user'] = request.form['username']
@@ -282,6 +284,18 @@ def admindel(id):
 def update_meme(id):
   db_memes = mongo.NEALE.memes
   return render_template('/admin/backmemes.html', memes = memes)
+
+@app.route('/nodel', methods=['POST'])
+def no_del():
+  return redirect(adminmemes())
+
+@app.route('/yesdel/<id>', methods=['POST'])
+def yes_del(id):
+  db_memes = mongo.NEALE.memes
+  db_memes.delete_one({
+    "_id":id
+  })
+  return redirect(adminmemes())
 
 
 #Execution du code

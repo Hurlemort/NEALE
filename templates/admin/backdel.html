@@ -17,15 +17,16 @@
     </div>
   </section>
 
-  <form class="flex w-full mb-6 justify-between" method="POST">
-    <p class="focus:text-black focus:bg-zinc-200 bg-gray-900 rounded-lg text-3xl border-2 border-purple-800 focus:border-purple-800 mr-6 p-6">
+  <div class="flex w-full mb-6 justify-between" method="POST">
+    <p class="focus:text-black w-full focus:bg-zinc-200 bg-gray-900 rounded-lg text-3xl border-2 border-purple-800 focus:border-purple-800 mr-6 p-6">
       Are you sure you want to delete this meme ?
     </p>
-    <a href="/admin/backmemes" class="border-solid border-2 rounded-lg p-3 hover:border-gray-900 hover:shadow-lg text-zinc-200 bg-gray-900 hover:duration-200 border-purple-800 hover:bg-purple-800 text-3xl border-2 w-1/4 h-12 self-center flew items-center pb-12">
-      <button formaction="" id="buttonDelete" class="w-full h-full text-center">NO</button>
-    </a>
-      <button type="submit" id="buttonDelete" class="border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg hover:text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl border-2 w-1/4 h-12 self-center flew items-center pb-12">YES</button>
-    </div>
-  </form>
+    <form action="/nodel" method="post" class="self-center w-1/4 h-full text-center border-solid border-2 rounded-lg p-3 hover:border-gray-900 hover:shadow-lg text-zinc-200 bg-gray-900 hover:duration-200 border-purple-800 hover:bg-purple-800 text-3xl border-2 w-1/4 h-12 mr-3">
+      <button type="submit" id="buttonDelete" class="self-center flew items-center">NO</button>
+    </form>
+    <form action="/yesdel/{{meme['_id']}}" method="post" class="self-center w-1/4 h-full text-center border-solid border-2 rounded-lg p-3 border-gray-900 hover:shadow-lg text-zinc-200 hover:bg-gray-900 hover:duration-200 hover:border-purple-800 bg-purple-800 text-3xl border-2 w-1/4 h-12 ml-3">
+      <button type="submit" id="buttonDelete" class="self-center flew items-center">YES</button>
+    </form>
+  </div>
 
 {% endblock %}
