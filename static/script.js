@@ -37,14 +37,3 @@ $("#hidebutton3").on("click", function(event) {
     ConfirmPassword = true;
   }
 });
-
-document.getElementById("buttonDelete").onmouseover = function() {DelOnMouseOver()};
-document.getElementById("buttonDelete").onmouseout = function() {DelOnMouseOut()};
-
-function DelOnMouseOver(){
-  document.getElementById("buttonDelete").textContent = "Are you sure tou want to delete this meme ?";
-}
-
-function DelOnMouseOut(){
-  document.getElementById("buttonDelete").textContent = "Delete";
-}
